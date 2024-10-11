@@ -1,1 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Urna Eletrônica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
 
+        h1 {
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #contador {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Vote na sua comida favorita!</h1>
+    <form id="votacao">
+        <label>
+            <input type="radio" name="jogo" value="Free Fire"> Free Fire
+        </label>
+        <label>
+            <input type="radio" name="jogo" value="Minecraft"> Minecraft
+        </label>
+        <label>
+            <input type="radio" name="jogo" value="GTA"> GTA
+        </label>
+        <label>
+            <input type="radio" name="jogo" value="Roblox"> Roblox
+        </label>
+        <label>
+            <input type="radio" name="jogo" value="Angela"> Angela
+        </label><br><br>
+        <button type="button" onclick="registrarVoto()">Votar</button>
+    </form>
+    <div id="resultado"></div>
+    <div id="contador" style="margin-top: 20px;">
+        <h2>Resultados da Votação:</h2>
+        <ul>
+            <li>Free Fire: <span id="freeFireCount">0</span></li>
+            <li>Minecraft: <span id="minecraftCount">0</span></li>
+            <li>GTA: <span id="gtaCount">0</span></li>
+            <li>Roblox: <span id="robloxCount">0</span></li>
+            <li>Angela: <span id="angelaCount">0</span></li>
+        </ul>
+    </div>
+
+    <script>
+        const votos = {
+            "Free Fire": 0,
+            "Minecraft": 0,
+            "GTA": 0,
+            "Roblox": 0,
+            "Angela": 0
+        };
+
+        function registrarVoto() {
+            const form = document.getElementById('votacao');
+            const resultado = document.getElementById('resultado');
+            const voto = form.comida.value;
+
+            if (voto) {
+                votos[voto]++;
+                resultado.innerHTML = `Você votou em: ${voto}`;
+                atualizarContador();
+            } else {
+                resultado.innerHTML = 'Por favor, selecione uma opção.';
+            }
+        }
+
+        function atualizarContador() {
+            document.getElementById('freeFireCount').innerText = votos["Free Fire"];
+            document.getElementById('minecraftCount').innerText = votos["Minecraft"];
+            document.getElementById('gtaCount').innerText = votos["GTA"];
+            document.getElementById('robloxCount').innerText = votos["Roblox"];
+            document.getElementById('angelaCount').innerText = votos["Angela"];
+        }
+    </script>
+</body>
+</html>
